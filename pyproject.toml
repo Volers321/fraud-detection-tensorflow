@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fraud-detection-tensorflow"
+version = "0.1.0"
+description = "Card-fraud detection in low-level TensorFlow: tf.data, custom GradientTape training loop, in-graph preprocessing, SavedModel and TFLite export with latency and quantisation checks."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Wiktor Ligmanowski" }]
+dependencies = ["numpy>=1.26", "pandas>=2.1", "tensorflow>=2.17", "matplotlib>=3.8"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+fraudtf = "fraudtf.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 110
+extend-exclude = ["src/fraudtf/data.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501", "E731"]
